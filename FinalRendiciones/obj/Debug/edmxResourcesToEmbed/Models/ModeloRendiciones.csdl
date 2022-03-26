@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalViaticosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="legajo" />
+    </Key>
+    <Property Name="legajo" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Viatico" Relationship="Self.FK_Viatico_Empleado" FromRole="Empleado" ToRole="Viatico" />
+  </EntityType>
+  <EntityType Name="Viatico">
+    <Key>
+      <PropertyRef Name="idViatico" />
+    </Key>
+    <Property Name="idViatico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="legajo" Type="Int32" />
+    <Property Name="concepto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="importe" Type="Single" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK_Viatico_Empleado" FromRole="Viatico" ToRole="Empleado" />
+  </EntityType>
+  <Association Name="FK_Viatico_Empleado">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Viatico" Type="Self.Viatico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="legajo" />
+      </Principal>
+      <Dependent Role="Viatico">
+        <PropertyRef Name="legajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalViaticosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="Viatico" EntityType="Self.Viatico" />
+    <AssociationSet Name="FK_Viatico_Empleado" Association="Self.FK_Viatico_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Viatico" EntitySet="Viatico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

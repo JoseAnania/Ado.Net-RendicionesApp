@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalViaticosModelStoreContainer" CdmEntityContainer="FinalViaticosEntities">
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="FinalViaticosModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="legajo" ColumnName="legajo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Viatico">
+      <EntityTypeMapping TypeName="FinalViaticosModel.Viatico">
+        <MappingFragment StoreEntitySet="Viatico">
+          <ScalarProperty Name="idViatico" ColumnName="idViatico" />
+          <ScalarProperty Name="legajo" ColumnName="legajo" />
+          <ScalarProperty Name="concepto" ColumnName="concepto" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

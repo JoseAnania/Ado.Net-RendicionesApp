@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalViaticosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="legajo" />
+    </Key>
+    <Property Name="legajo" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Viatico">
+    <Key>
+      <PropertyRef Name="idViatico" />
+    </Key>
+    <Property Name="idViatico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="legajo" Type="int" />
+    <Property Name="concepto" Type="varchar" MaxLength="50" />
+    <Property Name="importe" Type="real" />
+  </EntityType>
+  <Association Name="FK_Viatico_Empleado">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Viatico" Type="Self.Viatico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="legajo" />
+      </Principal>
+      <Dependent Role="Viatico">
+        <PropertyRef Name="legajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalViaticosModelStoreContainer">
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Viatico" EntityType="Self.Viatico" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Viatico_Empleado" Association="Self.FK_Viatico_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Viatico" EntitySet="Viatico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

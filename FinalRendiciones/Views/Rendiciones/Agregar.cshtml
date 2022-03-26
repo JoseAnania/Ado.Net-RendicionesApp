@@ -1,0 +1,30 @@
+﻿@model FinalRendiciones.Models.Rendicion
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Agregar</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <h1>Agregar Viático</h1>
+
+    <table>
+        @using (Html.BeginForm())
+        {
+            <tr><td>Empleado</td><td>@Html.DropDownListFor(R=>R.viatico.Legajo, new SelectList(Model.nombreEmpleado, "legajo", "nombre"), "Seleccione")</td></tr>
+            <tr><td>Concepto</td><td>@Html.TextBoxFor(R=>R.viatico.Concepto)</td></tr>
+            <tr><td>Importe</td><td>@Html.TextBoxFor(R=>R.viatico.Importe)</td></tr>
+            <tr><td></td><td><input type="submit" value="Agregar" /></td></tr>
+        }
+    </table>
+
+    @Html.ActionLink("Volver", "Index")
+</body>
+</html>
+
